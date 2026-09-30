@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:moviebooking-test;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+booking:
+  hold-duration-minutes: 5
+  weekend-surcharge-percent: 20
+  reminder-hours-before-show: 24
+  time-zone: Asia/Kolkata
+  seed-data: false
+
+logging:
+  level:
+    com.moviebooking: INFO
+    org.hibernate.SQL: WARN
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: "OFF"

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/moviebooking}
+    username: ${DB_USER:moviebooking}
+    password: ${DB_PASSWORD:moviebooking}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      # Fine for a weekend project; switch to Flyway/Liquibase migrations later
+      ddl-auto: update
+  h2:
+    console:
+      enabled: false

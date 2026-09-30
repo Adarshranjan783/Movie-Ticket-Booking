@@ -1,0 +1,17 @@
+# Optional: PostgreSQL for the "postgres" profile.
+#   docker compose up -d
+#   ./mvnw spring-boot:run -Dspring-boot.run.profiles=postgres
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: moviebooking
+      POSTGRES_USER: moviebooking
+      POSTGRES_PASSWORD: moviebooking
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

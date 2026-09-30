@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: movie-ticket-booking
+
+  # Default: embedded H2 so the app runs with zero setup.
+  # Run with --spring.profiles.active=postgres to use PostgreSQL (see application-postgres.yml).
+  datasource:
+    url: jdbc:h2:mem:moviebooking;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  task:
+    execution:
+      pool:
+        core-size: 2
+        max-size: 4
+
+server:
+  port: 8080
+
+booking:
+  # How long a seat hold stays valid before it is released automatically
+  hold-duration-minutes: 5
+  # Extra charge on shows that start on Saturday or Sunday
+  weekend-surcharge-percent: 20
+  # Reminder notification window before show start
+  reminder-hours-before-show: 24
+  # Used to decide whether a show falls on a weekend
+  time-zone: Asia/Kolkata
+  # Insert demo users, theater, movie, shows and a coupon on startup if the DB is empty
+  seed-data: true
+
+logging:
+  level:
+    com.moviebooking: INFO
+    # A lost seat race is a normal unique-constraint violation, not an error worth a stack trace.
+    # SQL failures still surface as exceptions and are logged by GlobalExceptionHandler when unexpected.
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: "OFF"
